@@ -50,32 +50,32 @@ namespace CodePulse.API.Repositories.Implementations
             
         }
 
-        public  Task<BlogPost?> GetByUrlHandleAsync(string urlHandle)
+        public async Task<BlogPost?> GetByUrlHandlerAsync(string urlHandler)
         {
-            // return await dbContext.Blogposts.Include(x => x.Categories).FirstOrDefaultAsync(x => x.UrlHandle == urlHandle);
-            throw new NotImplementedException();
+             return await dbContext.Blogposts.Include(x => x.Categories).FirstOrDefaultAsync(x => x.urlHandler == urlHandler);
+            
         }
 
-        public  Task<BlogPost?> UpdateAsync(BlogPost blogPost)
+        public async  Task<BlogPost?> UpdateAsync(BlogPost blogPost)
         {
-            //var existingBlogPost = await dbContext.Blogposts.Include(x => x.Categories)
-            //    .FirstOrDefaultAsync(x => x.Id == blogPost.Id);
+          var existingBlogPost = await dbContext.Blogposts.Include(x => x.Categories)
+                .FirstOrDefaultAsync(x => x.Id == blogPost.Id);
 
-            //if (existingBlogPost == null)
-            //{
-            //    return null;
-            //}
+            if (existingBlogPost == null)
+            {
+                return null;
+            }
 
             //// Update BlogPost
-            //dbContext.Entry(existingBlogPost).CurrentValues.SetValues(blogPost);
+            dbContext.Entry(existingBlogPost).CurrentValues.SetValues(blogPost);
 
             //// Update Categories
-            //existingBlogPost.Categories = blogPost.Categories;
+            existingBlogPost.Categories = blogPost.Categories;
 
-            //await dbContext.SaveChangesAsync();
+            await dbContext.SaveChangesAsync();
 
-            //return blogPost;
-            throw new NotImplementedException();
+            return blogPost;
+           
         }
 
       

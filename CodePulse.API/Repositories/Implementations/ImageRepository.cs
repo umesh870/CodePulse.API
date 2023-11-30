@@ -5,22 +5,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodePulse.API.Repositories.Implementations
 {
-    public class ImageRepository 
+    public class ImageRepository : IImageRepository
     {
-        /*
         private readonly IWebHostEnvironment webHostEnvironment;
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly ApplicationDBContext dbContext;
-
         public ImageRepository(IWebHostEnvironment webHostEnvironment,
-            IHttpContextAccessor httpContextAccessor,
-            ApplicationDBContext dbContext)
+        IHttpContextAccessor httpContextAccessor,
+        ApplicationDBContext dbContext)
         {
             this.webHostEnvironment = webHostEnvironment;
             this.httpContextAccessor = httpContextAccessor;
             this.dbContext = dbContext;
         }
-
         public async Task<IEnumerable<BlogImage>> GetAll()
         {
             return await dbContext.BlogImages.ToListAsync();
@@ -34,7 +31,7 @@ namespace CodePulse.API.Repositories.Implementations
             await file.CopyToAsync(stream);
 
             // 2-Update the database
-            // https://codepulse.com/images/somefilename.jpg
+            // ttps://codepulse.com/images/somefilename.jpg
             var httpRequest = httpContextAccessor.HttpContext.Request;
             var urlPath = $"{httpRequest.Scheme}://{httpRequest.Host}{httpRequest.PathBase}/Images/{blogImage.FileName}{blogImage.FileExtension}";
 
@@ -44,7 +41,7 @@ namespace CodePulse.API.Repositories.Implementations
             await dbContext.SaveChangesAsync();
 
             return blogImage;
+
         }
-        */
     }
 }
